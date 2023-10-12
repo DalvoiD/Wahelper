@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-u8=y#p#l5@c2%e%jb#=au-0dhsi=6q=73wf%*hcawnhb)@f0gt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'apps.factions.SM',
     'apps.factions.CSM',
     'apps.factions.NCR',
-    'graphene_django'
+    'graphene_django',
+    'corsheaders',
 ]
 
 GRAPHENE = {
@@ -51,6 +52,7 @@ GRAPHENE = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -59,6 +61,34 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
+
+CORS_ORIGIN_WHITELIST = ["http://localhost:3000", ]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
 TEMPLATES = [
     {
