@@ -1,13 +1,23 @@
 import uuid
 from django.db import models
 
-from apps.core.models import CharField, IntegerField, UUIDField, ManyToManyField, ForeignKey
-from apps.core.models import WeaponType, FactionKeyword, Faction
+from apps.core.models import CharField, IntegerField, UUIDField, ManyToManyField, ForeignKey, TextField
+from apps.core.models import WeaponType, FactionKeyword, Fraction, CoreAbility
 
 
-class Chapter(models.Model):
+class Ability(models.Model):
     id = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = CharField(max_length=20)
+    discretion = TextField()
+
+    def __str__(self) -> str:
+        return f'{self.name}'
+
+
+class ArmyRule(models.Model):
+    id = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = CharField(max_length=20)
+    discretion = TextField()
 
     def __str__(self) -> str:
         return f'{self.name}'
@@ -51,8 +61,10 @@ class Unit(models.Model):
     faction_keyword = ManyToManyField(FactionKeyword)
     base = CharField(max_length=10)
     points = IntegerField()
-    chapter = ForeignKey(Chapter, on_delete=models.CASCADE)
-    faction = ForeignKey(Faction, on_delete=models.CASCADE)
+    army_rule = ForeignKey(ArmyRule, on_delete=models.CASCADE)
+    fraction = ForeignKey(Fraction, on_delete=models.CASCADE)
+    core_ability = ManyToManyField(CoreAbility)
+    ability = ManyToManyField(Ability)
 
     def __str__(self) -> str:
         return f'{self.name}'

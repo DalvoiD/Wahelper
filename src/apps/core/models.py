@@ -26,7 +26,16 @@ class TextField(models.TextField):
     pass
 
 
-class Faction(models.Model):
+class CoreAbility(models.Model):
+    id = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = CharField(max_length=20)
+    discretion = TextField()
+
+    def __str__(self) -> str:
+        return f'{self.name}'
+
+
+class Fraction(models.Model):
     id = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = CharField(max_length=20)
 

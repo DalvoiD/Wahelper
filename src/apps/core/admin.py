@@ -1,10 +1,15 @@
 from django.contrib import admin
 
-from .models import Faction, FactionKeyword, WeaponType
+from .models import Fraction, FactionKeyword, WeaponType, CoreAbility
 
 
-@admin.register(Faction)
-class FactionAdmin(admin.ModelAdmin):
+@admin.register(CoreAbility)
+class CoreAbilityAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'discretion')
+
+
+@admin.register(Fraction)
+class FractionAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
 
 

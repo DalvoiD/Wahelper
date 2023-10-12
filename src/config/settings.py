@@ -40,14 +40,19 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.factions.SM',
     'apps.factions.CSM',
-    'apps.factions.NCR'
+    'apps.factions.NCR',
+    'graphene_django'
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'config.schema.schema',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
