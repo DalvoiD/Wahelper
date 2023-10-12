@@ -41,20 +41,3 @@ class Query(graphene.ObjectType):
 
     def resolve_core_abilities(self, info):
         return CoreAbility.objects.all()
-
-
-class Mutation(graphene.ObjectType):
-    # Fraction Mutation
-    add_fraction = graphene.Field(FractionNode, name=graphene.String(required=True))
-    remove_fraction = graphene.Field(graphene.Boolean, fraction_id=graphene.ID())
-
-    def resolve_add_fraction(self, info, **kwargs):
-        return Fraction.objects.create(**kwargs)
-
-    def resolve_remove_fraction(self, info, fraction_id):
-        try:
-            Fraction.objects.get(id=fraction_id).delete()
-        except Fraction.DoesNotExist:
-            return False
-        return True
-

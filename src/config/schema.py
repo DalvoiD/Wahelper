@@ -1,5 +1,13 @@
 import graphene
 
-from apps.core.schema import Query, Mutation
+import apps.core.schema
+import apps.factions.CSM.schema
 
-schema = graphene.Schema(query=Query, mutation=Mutation)
+
+class Query(apps.core.schema.Query,
+            apps.factions.CSM.schema.Query,
+            graphene.ObjectType):
+    pass
+
+
+schema = graphene.Schema(query=Query)
