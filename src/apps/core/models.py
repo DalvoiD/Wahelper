@@ -22,6 +22,10 @@ class ManyToManyField(models.ManyToManyField):
     pass
 
 
+class TextField(models.TextField):
+    pass
+
+
 class Faction(models.Model):
     id = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = CharField(max_length=20)
@@ -30,7 +34,7 @@ class Faction(models.Model):
         return f'{self.name}'
 
 
-class Keyword(models.Model):
+class FactionKeyword(models.Model):
     id = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = CharField(max_length=20)
 
@@ -41,7 +45,7 @@ class Keyword(models.Model):
 class WeaponType(models.Model):
     id = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = CharField(max_length=20)
-    discretion = CharField(max_length=1000)
+    discretion = TextField()
 
     def __str__(self) -> str:
         return f'{self.name}'
